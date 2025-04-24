@@ -26,6 +26,7 @@ async function bootstrap() {
   });
   proxy.start();
   await app.startAllMicroservices();
+  console.log(port);
   await app.listen(port);
 }
 
