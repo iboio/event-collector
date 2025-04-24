@@ -5,7 +5,7 @@ import { join } from 'path';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 3050;
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
@@ -17,6 +17,7 @@ async function bootstrap() {
   app.enableShutdownHooks();
   app.useLogger(['log', 'error', 'warn', 'debug', 'verbose']);
   await app.startAllMicroservices();
+  console.log(port);
   await app.listen(port);
 }
 
