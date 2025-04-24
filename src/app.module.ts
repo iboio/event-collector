@@ -8,8 +8,10 @@ import { ConfigModule } from '@nestjs/config';
 import { JetstreamModule } from './jetstream/jetstream.module';
 import { CollectorModule } from './collector/collector.module';
 import { BotModule } from './bot/bot.module';
-import { ProxyAgent } from 'undici';
+import { setGlobalDispatcher, ProxyAgent } from 'undici';
 import { GrpcModule } from './grpc/grpc.module';
+const proxyUrl = process.env.PROXY_URL;
+setGlobalDispatcher(new ProxyAgent(proxyUrl));
 
 @Module({
   imports: [
