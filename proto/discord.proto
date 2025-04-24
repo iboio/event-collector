@@ -1,0 +1,18 @@
+syntax = "proto3";
+package discord;
+service Guild {
+  rpc GetGuilds(GetGuildRequest) returns (GetGuildResponse);
+}
+
+message GetGuildRequest {
+}
+
+message GetGuildResponse {
+  repeated GuildInfo guilds = 1;
+}
+
+message GuildInfo {
+  string id = 1;
+  string name = 2;
+  string icon = 3;
+}

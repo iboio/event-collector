@@ -20,6 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.13.2",
+    "@grpc/proto-loader": "^0.7.13",
     "@nestjs-plugins/nestjs-nats-jetstream-transport": "^2.2.6",
     "@nestjs/common": "^11.0.12",
     "@nestjs/config": "^4.0.1",
@@ -29,8 +31,10 @@
     "discord.js": "^14.18.0",
     "nats": "^2.29.3",
     "necord": "^6.8.8",
+    "node-global-proxy": "^1.0.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.8.2",
+    "undici": "^5.6.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^11.0.5",
