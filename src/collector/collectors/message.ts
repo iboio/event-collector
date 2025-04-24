@@ -11,7 +11,7 @@ import { BotService } from '../../bot/bot.service';
 
 const MESSAGE_EVENT = 'event.msg';
 const MESSAGE_EVENT_DELETE = 'event.msg.delete';
-const MESSAGE_EVENT_UPDATE = 'event.msg.update';
+const MESSAGE_EVENT_UPDATE = 'event.msg.edit';
 
 @Injectable()
 export class MessageEventCollector {
@@ -48,6 +48,7 @@ export class MessageEventCollector {
         userId: newMessage.author.id,
         userAvatar: newMessage.author.avatarURL(),
         oldContent: oldMessage.content,
+        username: oldMessage.author.username,
         newContent: newMessage.content,
         eventTime: Math.floor(newMessage.createdTimestamp / 1000),
       },

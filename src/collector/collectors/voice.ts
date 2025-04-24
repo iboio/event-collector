@@ -27,7 +27,7 @@ export class VoiceEventCollector {
         channelId: oldState.channelId,
         channelName: await this.botService.getChannelName(oldState.channelId),
         userId: oldState.member.user.id,
-        profileUrl: oldState.member.user.avatarURL(),
+        userAvatar: oldState.member.user.avatarURL(),
         username: oldState.member.user.username,
         eventTime: Math.floor(Date.now() / 1000),
       } as VoiceStateUpdate;
@@ -46,6 +46,7 @@ export class VoiceEventCollector {
         channelId: newState.channelId,
         channelName: await this.botService.getChannelName(newState.channelId),
         userId: newState.member.user.id,
+        userAvatar: newState.member.user.avatarURL(),
         username: newState.member.user.username,
         eventTime: Math.floor(Date.now() / 1000),
       } as VoiceStateUpdate;
@@ -73,13 +74,13 @@ export class VoiceEventCollector {
         oldChannelName: await this.botService.getChannelName(
           oldState.channelId,
         ),
-        profileUrl: newState.member.user.avatarURL(),
+        userAvatar: newState.member.user.avatarURL(),
         userId: newState.member.user.id,
         username: newState.member.user.username,
         eventTime: Math.floor(Date.now() / 1000),
       } as VoiceStateSwitch;
       await this.jetstreamService.publishMessage<VoiceStateSwitch>(
-        VOICE_EVENT_LOG,
+        VOICE_PROCESS,
         data,
       );
       await this.jetstreamService.publishMessage<VoiceStateSwitch>(

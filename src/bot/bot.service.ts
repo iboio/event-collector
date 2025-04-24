@@ -1,6 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Once, On, Context, ContextOf } from 'necord';
-import { Client, TextChannel, VoiceChannel } from 'discord.js';
+import { Context, ContextOf, On, Once } from 'necord';
+import {
+  Client,
+  Collection,
+  Guild,
+  TextChannel,
+  VoiceChannel,
+} from 'discord.js';
 
 @Injectable()
 export class BotService {
@@ -25,5 +31,9 @@ export class BotService {
     if (channel instanceof VoiceChannel) {
       return channel.name;
     }
+  }
+
+  async getGuildId(): Promise<Collection<string, Guild>> {
+    return this.client.guilds.cache;
   }
 }

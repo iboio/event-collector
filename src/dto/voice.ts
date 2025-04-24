@@ -4,6 +4,7 @@ export class VoiceStateUpdate {
   channelId: string;
   channelName: string;
   userId: string;
+  userAvatar: string;
   username: string;
   eventTime: number;
 }
@@ -17,6 +18,7 @@ export class VoiceStateSwitch {
   newChannelName: string;
   userId: string;
   username: string;
+  userAvatar: string;
   eventTime: number;
 }
 

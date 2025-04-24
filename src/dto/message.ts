@@ -12,6 +12,7 @@ export class UpdatedMessage {
   channelName: string;
   userId: string;
   oldContent: string;
+  username: string;
   userAvatar: string;
   newContent: string;
   eventTime: number;

@@ -8,6 +8,9 @@ import { ConfigModule } from '@nestjs/config';
 import { JetstreamModule } from './jetstream/jetstream.module';
 import { CollectorModule } from './collector/collector.module';
 import { BotModule } from './bot/bot.module';
+import { ProxyAgent } from 'undici';
+import { GrpcModule } from './grpc/grpc.module';
+
 @Module({
   imports: [
     NecordModule.forRoot({
@@ -22,10 +25,13 @@ import { BotModule } from './bot/bot.module';
         IntentsBitField.Flags.GuildMessageTyping,
       ],
     }),
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     JetstreamModule,
     CollectorModule,
     BotModule,
+    GrpcModule,
   ],
   controllers: [AppController],
   providers: [AppService],
