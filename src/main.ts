@@ -2,10 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { join } from 'path';
+import { default as proxy } from 'node-global-proxy';
+import * as process from 'process';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const port = process.env.PORT || 3050;
+  const proxyUrl = process.env.PROXY_URL;
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.GRPC,
     options: {
@@ -16,6 +19,12 @@ async function bootstrap() {
   });
   app.enableShutdownHooks();
   app.useLogger(['log', 'error', 'warn', 'debug', 'verbose']);
+  console.log(port);
+  proxy.setConfig({
+    http: proxyUrl,
+    https: proxyUrl,
+  });
+  proxy.start();
   await app.startAllMicroservices();
   console.log(port);
   await app.listen(port);
